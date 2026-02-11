@@ -1,81 +1,106 @@
 :root {
-    --bg1: #ffdde8;
-    --bg2: #fff3f7;
-    --card: rgba(255, 255, 255, 0.75);
-    --text: #2a1b22;
-    --pink: #ff4d88;
-    --pink2: #ff76a3;
-    --shadow: 0 18px 60px rgba(0,0,0,0.12);
+    --bg: #f5eef2;
+    --bg-soft: #faf6f8;
+    --card-bg: #ffffff;
+    --text: #2d2329;
+    --text-soft: #5c4d54;
+    --accent: #c97b94;
+    --accent-soft: #e8b4c4;
+    --border: rgba(201, 123, 148, 0.15);
+    /* Layered depth shadows */
+    --shadow-sm: 0 1px 2px rgba(45, 35, 41, 0.04);
+    --shadow-md: 0 4px 12px rgba(45, 35, 41, 0.06), 0 2px 4px rgba(45, 35, 41, 0.04);
+    --shadow-lg: 0 12px 40px rgba(45, 35, 41, 0.08), 0 4px 12px rgba(45, 35, 41, 0.04);
+    --shadow-card: 0 2px 8px rgba(45, 35, 41, 0.04), 0 16px 48px rgba(45, 35, 41, 0.1), 0 0 0 1px rgba(45, 35, 41, 0.04);
   }
-  
+
   * { box-sizing: border-box; }
+
   body {
     margin: 0;
     min-height: 100vh;
-    display: grid;
-    place-items: center;
-    background: radial-gradient(circle at 20% 20%, var(--bg2), var(--bg1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: var(--bg);
+    background-image: radial-gradient(ellipse 120% 80% at 50% 0%, var(--bg-soft) 0%, var(--bg) 70%);
     font-family: "Nunito", ui-sans-serif, system-ui, sans-serif;
     color: var(--text);
     overflow-x: hidden;
   }
-  
+
   .card {
     position: relative;
-    width: min(560px, 92vw);
-    padding: 34px 26px 28px;
-    border-radius: 26px;
-    background: var(--card);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.7);
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 40px 32px 36px;
+    border-radius: 20px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
     text-align: center;
   }
-  
+
   h1 {
-    margin: 6px 0 10px;
+    margin: 0 0 12px;
     font-family: "Fredoka", "Nunito", sans-serif;
-    font-size: clamp(28px, 4vw, 40px);
-    line-height: 1.05;
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.2;
     font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
   }
-  
+
   .subtitle {
-    margin: 0 auto 18px;
-    max-width: 46ch;
-    opacity: 0.9;
+    margin: 0 auto 24px;
+    max-width: 42ch;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-soft);
   }
-  
+
   .buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 56px; /* ~2 inches apart */
-    margin: 18px 0 10px;
+    gap: 48px;
+    margin: 20px 0 12px;
     min-height: 52px;
   }
-  
+
   .btn {
     border: 0;
-    padding: 14px 18px;
-    border-radius: 16px;
-    font-size: 18px;
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.12s ease, filter 0.12s ease;
-    box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--shadow-md);
   }
-  
-  .btn:active { transform: translateY(1px) scale(0.99); }
-  
+
+  .btn:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .btn:active { transform: translateY(1px); }
+
   .yes {
-    background: linear-gradient(135deg, var(--pink), var(--pink2));
+    background: linear-gradient(180deg, var(--accent) 0%, #b86a82 100%);
     color: white;
   }
-  
+
+  .yes:hover {
+    box-shadow: 0 6px 20px rgba(201, 123, 148, 0.35), var(--shadow-md);
+  }
+
   .no {
-    background: rgba(42, 27, 34, 0.08);
-    color: var(--text);
-    transition: left 0.15s ease-out, top 0.15s ease-out;
+    background: var(--card-bg);
+    color: var(--text-soft);
+    border: 1px solid var(--border);
+    transition: left 0.15s ease-out, top 0.15s ease-out, box-shadow 0.15s ease;
   }
 
   .no.hidden-after-yes {
@@ -83,50 +108,48 @@
     visibility: hidden !important;
     pointer-events: none !important;
   }
-  
+
   .again {
-    background: rgba(255, 77, 136, 0.12);
+    background: var(--bg-soft);
     color: var(--text);
+    border: 1px solid var(--border);
   }
-  
+
   .tiny {
-    margin: 6px 0 0;
+    margin: 8px 0 0;
     font-size: 13px;
-    opacity: 0.7;
+    color: var(--text-soft);
+    opacity: 0.85;
   }
-  
+
   .result {
-    margin-top: 18px;
-    padding: 16px 14px 8px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 77, 136, 0.22);
+    margin-top: 24px;
+    padding: 20px 0 8px;
+    border-top: 1px solid var(--border);
+    text-align: center;
   }
-  
+
   .hidden { display: none; }
-  
+
   .big {
-    font-size: clamp(26px, 3.6vw, 34px);
-    font-weight: 800;
-    letter-spacing: 0.4px;
+    font-size: clamp(22px, 3.2vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 4px;
   }
-  
-  /* photo frame + animations */
+
+  /* Photo frame – refined, no glow animation */
   .photo-frame {
     position: relative;
     display: block;
     width: calc(3in + 24px);
-    margin: 14px auto 16px;
-    padding: 12px;
-    background: linear-gradient(145deg, #fff 0%, #fff8fa 50%, #ffe8f0 100%);
+    margin: 20px auto 20px;
+    padding: 10px;
+    background: var(--card-bg);
     border-radius: 12px;
-    box-shadow:
-      0 0 0 3px var(--pink2),
-      0 0 0 6px rgba(255, 118, 163, 0.3),
-      0 12px 32px rgba(255, 77, 136, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    animation: photoPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
-               frameGlow 2.5s ease-in-out infinite 0.8s;
+    box-shadow: var(--shadow-md), 0 0 0 1px var(--border);
+    animation: photoPopIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   .photo-frame img {
@@ -135,67 +158,50 @@
     height: 4in;
     margin: 0 auto;
     border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     object-fit: cover;
   }
 
   .frame-hearts {
     position: absolute;
-    font-size: 20px;
+    font-size: 16px;
     opacity: 0;
-    animation: frameHeartPop 0.5s ease-out forwards,
-               heartWiggle 1.8s ease-in-out infinite;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+    animation: frameHeartPop 0.4s ease-out forwards;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
   }
-  .frame-hearts-tl { top: -6px;  left: -6px;  animation-delay: 0.3s, 1s; }
-  .frame-hearts-tr { top: -6px;  right: -6px; animation-delay: 0.4s, 1.2s; }
-  .frame-hearts-bl { bottom: -6px; left: -6px;  animation-delay: 0.5s, 1.4s; }
-  .frame-hearts-br { bottom: -6px; right: -6px; animation-delay: 0.6s, 1.6s; }
+  .frame-hearts-tl { top: -4px;  left: -4px;  animation-delay: 0.2s; }
+  .frame-hearts-tr { top: -4px;  right: -4px; animation-delay: 0.25s; }
+  .frame-hearts-bl { bottom: -4px; left: -4px;  animation-delay: 0.3s; }
+  .frame-hearts-br { bottom: -4px; right: -4px; animation-delay: 0.35s; }
 
   @keyframes photoPopIn {
     0% {
       opacity: 0;
-      transform: scale(0.7) rotate(-3deg);
+      transform: scale(0.96) translateY(8px);
     }
     100% {
       opacity: 1;
-      transform: scale(1) rotate(0deg);
+      transform: scale(1) translateY(0);
     }
   }
 
   @keyframes frameHeartPop {
-    0% {
-      opacity: 0;
-      transform: scale(0);
-    }
-    60% {
-      transform: scale(1.2);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes frameGlow {
-    0%, 100% { box-shadow: 0 0 0 3px var(--pink2), 0 0 0 6px rgba(255, 118, 163, 0.3), 0 12px 32px rgba(255, 77, 136, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
-    50% { box-shadow: 0 0 0 3px var(--pink2), 0 0 0 8px rgba(255, 118, 163, 0.4), 0 14px 36px rgba(255, 77, 136, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
-  }
-
-  @keyframes heartWiggle {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    25% { transform: scale(1.1) rotate(-5deg); }
-    75% { transform: scale(1.1) rotate(5deg); }
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 0.9; transform: scale(1); }
   }
 
   .message {
-    margin: 10px auto 12px;
-    max-width: 48ch;
+    margin: 12px auto 16px;
+    max-width: 44ch;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-soft);
   }
-  
+
   .footer {
-    margin-top: 14px;
+    margin-top: 16px;
     font-size: 12px;
-    opacity: 0.6;
+    color: var(--text-soft);
+    opacity: 0.7;
   }
   
