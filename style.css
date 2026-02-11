@@ -47,9 +47,10 @@
   .buttons {
     display: flex;
     justify-content: center;
-    gap: 14px;
+    align-items: center;
+    gap: 56px; /* ~2 inches apart */
     margin: 18px 0 10px;
-    flex-wrap: wrap;
+    min-height: 52px;
   }
   
   .btn {
@@ -72,6 +73,7 @@
   .no {
     background: rgba(42, 27, 34, 0.08);
     color: var(--text);
+    transition: left 0.15s ease-out, top 0.15s ease-out;
   }
   
   .again {
@@ -101,6 +103,81 @@
     letter-spacing: 0.4px;
   }
   
+  /* photo frame + animations */
+  .photo-frame {
+    position: relative;
+    display: inline-block;
+    margin: 14px auto 16px;
+    padding: 12px;
+    background: linear-gradient(145deg, #fff 0%, #fff8fa 50%, #ffe8f0 100%);
+    border-radius: 12px;
+    box-shadow:
+      0 0 0 3px var(--pink2),
+      0 0 0 6px rgba(255, 118, 163, 0.3),
+      0 12px 32px rgba(255, 77, 136, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    animation: photoPopIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               frameGlow 2.5s ease-in-out infinite 0.8s;
+  }
+
+  .photo-frame img {
+    display: block;
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .frame-hearts {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0;
+    animation: frameHeartPop 0.5s ease-out forwards,
+               heartWiggle 1.8s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  }
+  .frame-hearts-tl { top: -6px;  left: -6px;  animation-delay: 0.3s, 1s; }
+  .frame-hearts-tr { top: -6px;  right: -6px; animation-delay: 0.4s, 1.2s; }
+  .frame-hearts-bl { bottom: -6px; left: -6px;  animation-delay: 0.5s, 1.4s; }
+  .frame-hearts-br { bottom: -6px; right: -6px; animation-delay: 0.6s, 1.6s; }
+
+  @keyframes photoPopIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.7) rotate(-3deg);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes frameHeartPop {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    60% {
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes frameGlow {
+    0%, 100% { box-shadow: 0 0 0 3px var(--pink2), 0 0 0 6px rgba(255, 118, 163, 0.3), 0 12px 32px rgba(255, 77, 136, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
+    50% { box-shadow: 0 0 0 3px var(--pink2), 0 0 0 8px rgba(255, 118, 163, 0.4), 0 14px 36px rgba(255, 77, 136, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8); }
+  }
+
+  @keyframes heartWiggle {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+  }
+
   .message {
     margin: 10px auto 12px;
     max-width: 48ch;

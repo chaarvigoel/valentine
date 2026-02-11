@@ -4,26 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be my Valentine?</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="card">
-      <h1>Will you be my Valentine? 💘</h1>
-      <p id="subtitle">I made you a tiny website because I like you a lot.</p>
+    <main class="card" aria-live="polite">
+      <div class="hearts" aria-hidden="true"></div>
+
+      <h1 id="title">Will you be my Valentine? 💘</h1>
+      <p class="subtitle" id="subtitle">
+        I made you a tiny website because I’m obsessed with you.
+      </p>
 
       <div class="buttons">
-        <button id="yesBtn" class="btn yes">Yes 😚</button>
-        <button id="noBtn" class="btn no">No 🙃</button>
+        <button class="btn yes" id="yesBtn">Yes 😚</button>
+        <button class="btn no" id="noBtn">No 🙃</button>
       </div>
 
-      <p id="tinyNote" class="tiny">Try clicking “No” 😉</p>
+      <p class="tiny" id="tinyNote">Try to catch the No button 😉</p>
 
-      <section id="result" class="result hidden">
-        <div class="big">YAYYYYY 💞</div>
-        <p>Ok it’s official. You’re stuck with me.</p>
+      <section class="result hidden" id="result">
+        <div class="big">YAYYYYYYYYY 💞</div>
+        <div class="photo-frame" aria-hidden="true">
+          <img src="IMG_2454.JPG" alt="Us 💕" />
+          <span class="frame-hearts frame-hearts-tl">💗</span>
+          <span class="frame-hearts frame-hearts-tr">💖</span>
+          <span class="frame-hearts frame-hearts-bl">💘</span>
+          <span class="frame-hearts frame-hearts-br">💞</span>
+        </div>
+        <p class="message" id="message">
+          Okay so it’s official. I’m taking you on a date. <br />
+          Dress cute. You’re stuck with me.
+        </p>
+        <button class="btn again" id="againBtn">Replay</button>
       </section>
     </main>
 
-    <script src="./script.js"></script>
+    <footer class="footer">
+      made with 💗
+    </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>

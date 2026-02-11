@@ -1,26 +1,85 @@
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
+const againBtn = document.getElementById("againBtn");
 const result = document.getElementById("result");
-const tinyNote = document.getElementById("tinyNote");
+const title = document.getElementById("title");
+const subtitle = document.getElementById("subtitle");
+const card = document.querySelector(".card");
 
-let noCount = 0;
+const FLEE_THRESHOLD = 100; // px – cursor this close and the No button runs
+const PAD = 16;
 
-noBtn.addEventListener("click", () => {
-  noCount++;
-  const msgs = [
-    "Try clicking “No” 😉",
-    "Wait… are you sure? 😭",
-    "Ok that’s rude.",
-    "I literally made a website???",
-    "Last chance 😳"
-  ];
-  tinyNote.textContent = msgs[Math.min(noCount, msgs.length - 1)];
-  yesBtn.style.transform = `scale(${1 + Math.min(noCount * 0.15, 1.0)})`;
+function popConfetti() {
+  const emojis = ["💘", "💗", "💖", "💞", "✨", "🥰"];
+  for (let i = 0; i < 42; i++) {
+    const s = document.createElement("span");
+    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    s.style.position = "fixed";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.top = "-20px";
+    s.style.fontSize = 14 + Math.random() * 18 + "px";
+    s.style.transition = "transform 1.2s ease, opacity 1.2s ease";
+    s.style.zIndex = 9999;
+    document.body.appendChild(s);
+
+    requestAnimationFrame(() => {
+      s.style.transform = `translateY(${110 + Math.random() * 30}vh) rotate(${Math.random() * 360}deg)`;
+      s.style.opacity = "0";
+    });
+
+    setTimeout(() => s.remove(), 1300);
+  }
+}
+
+function moveNoButtonAway(cursorX, cursorY) {
+  const cardRect = card.getBoundingClientRect();
+  const minDistFromCursor = 120;
+  let x, y;
+
+  for (let i = 0; i < 20; i++) {
+    x = cardRect.left + PAD + Math.random() * (cardRect.width - noBtn.offsetWidth - 2 * PAD);
+    y = cardRect.top + PAD + Math.random() * (cardRect.height - noBtn.offsetHeight - 2 * PAD);
+    const btnCenterX = x + noBtn.offsetWidth / 2;
+    const btnCenterY = y + noBtn.offsetHeight / 2;
+    if (Math.hypot(cursorX - btnCenterX, cursorY - btnCenterY) >= minDistFromCursor) break;
+  }
+
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+document.addEventListener("mousemove", (e) => {
+  if (!result.classList.contains("hidden")) return;
+  if (yesBtn.disabled) return;
+
+  const rect = noBtn.getBoundingClientRect();
+  const btnCenterX = rect.left + rect.width / 2;
+  const btnCenterY = rect.top + rect.height / 2;
+  const dist = Math.hypot(e.clientX - btnCenterX, e.clientY - btnCenterY);
+
+  if (dist < FLEE_THRESHOLD) {
+    moveNoButtonAway(e.clientX, e.clientY);
+  }
 });
 
 yesBtn.addEventListener("click", () => {
+  popConfetti();
+  title.textContent = "Correct answer ✅💗";
+  subtitle.textContent = "I knew you were smart.";
+
   result.classList.remove("hidden");
-  tinyNote.textContent = "Correct answer ✅";
   yesBtn.disabled = true;
   noBtn.disabled = true;
+});
+
+againBtn.addEventListener("click", () => {
+  title.textContent = "Will you be my Valentine? 💘";
+  subtitle.textContent = "I made you a tiny website because I'm obsessed with you.";
+  result.classList.add("hidden");
+  yesBtn.disabled = false;
+  noBtn.disabled = false;
+  noBtn.style.position = "";
+  noBtn.style.left = "";
+  noBtn.style.top = "";
 });
