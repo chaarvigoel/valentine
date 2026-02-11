@@ -81,6 +81,7 @@ yesBtn.addEventListener("click", () => {
   result.classList.remove("hidden");
   yesBtn.disabled = true;
   noBtn.disabled = true;
+  noBtn.classList.add("hidden-after-yes");
   noBtn.style.display = "none";
 });
 
@@ -90,6 +91,7 @@ againBtn.addEventListener("click", () => {
   result.classList.add("hidden");
   yesBtn.disabled = false;
   noBtn.disabled = false;
+  noBtn.classList.remove("hidden-after-yes");
   noBtn.style.position = "";
   noBtn.style.left = "";
   noBtn.style.top = "";
