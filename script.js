@@ -63,10 +63,20 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
+// Try both possible image filenames (with/without underscore)
+const photoImg = document.getElementById("valentinePhoto");
+if (photoImg) {
+  photoImg.addEventListener("error", function tryAlternateSrc() {
+    if (this.dataset.tried) return;
+    this.dataset.tried = "1";
+    this.src = this.src.includes("_") ? "IMG2454.JPG" : "IMG_2454.JPG";
+  });
+}
+
 yesBtn.addEventListener("click", () => {
   popConfetti();
   title.textContent = "Correct answer ✅💗";
-  subtitle.textContent = "I knew you were smart.";
+  subtitle.textContent = "I guess that degree was worth it";
 
   result.classList.remove("hidden");
   yesBtn.disabled = true;
@@ -75,7 +85,7 @@ yesBtn.addEventListener("click", () => {
 
 againBtn.addEventListener("click", () => {
   title.textContent = "Will you be my Valentine? 💘";
-  subtitle.textContent = "I made you a tiny website because I'm obsessed with you.";
+  subtitle.textContent = "I'm like kinda in love with u so i made u a website";
   result.classList.add("hidden");
   yesBtn.disabled = false;
   noBtn.disabled = false;
