@@ -191,29 +191,3 @@
     opacity: 0.6;
   }
   
-  /* floating hearts */
-  .hearts::before,
-  .hearts::after {
-    content: "💗 💖 💘 💞 💓";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -26px;
-    font-size: 18px;
-    opacity: 0.9;
-    filter: drop-shadow(0 10px 18px rgba(0,0,0,0.12));
-    animation: floaty 3.6s ease-in-out infinite;
-  }
-  .hearts::after {
-    top: auto;
-    bottom: -22px;
-    font-size: 16px;
-    opacity: 0.75;
-    animation-duration: 4.4s;
-  }
-  
-  @keyframes floaty {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-  }
-  

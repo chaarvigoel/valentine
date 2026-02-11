@@ -81,15 +81,17 @@ yesBtn.addEventListener("click", () => {
   result.classList.remove("hidden");
   yesBtn.disabled = true;
   noBtn.disabled = true;
+  noBtn.style.display = "none";
 });
 
 againBtn.addEventListener("click", () => {
   title.textContent = "Will you be my Valentine? 💘";
-  subtitle.textContent = "I'm like kinda in love with u so i made u a website";
+  subtitle.textContent = "I'm like kinda in love with u so i made u a website :)"  
   result.classList.add("hidden");
   yesBtn.disabled = false;
   noBtn.disabled = false;
   noBtn.style.position = "";
   noBtn.style.left = "";
   noBtn.style.top = "";
+  noBtn.style.display = "";
 });
