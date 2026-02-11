@@ -4,6 +4,7 @@ const againBtn = document.getElementById("againBtn");
 const result = document.getElementById("result");
 const title = document.getElementById("title");
 const subtitle = document.getElementById("subtitle");
+const tinyNote = document.getElementById("tinyNote");
 const card = document.querySelector(".card");
 
 const FLEE_THRESHOLD = 100; // px – cursor this close and the No button runs
@@ -83,6 +84,7 @@ yesBtn.addEventListener("click", () => {
   noBtn.disabled = true;
   noBtn.classList.add("hidden-after-yes");
   noBtn.style.display = "none";
+  if (tinyNote) tinyNote.style.display = "none";
 });
 
 againBtn.addEventListener("click", () => {
@@ -96,4 +98,5 @@ againBtn.addEventListener("click", () => {
   noBtn.style.left = "";
   noBtn.style.top = "";
   noBtn.style.display = "";
+  if (tinyNote) tinyNote.style.display = "";
 });
