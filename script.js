@@ -84,7 +84,7 @@ yesBtn.addEventListener("click", () => {
   noBtn.disabled = true;
   noBtn.classList.add("hidden-after-yes");
   noBtn.style.display = "none";
-  if (tinyNote) tinyNote.style.display = "none";
+  if (tinyNote) tinyNote.classList.add("hidden-after-yes");
 });
 
 againBtn.addEventListener("click", () => {
@@ -98,5 +98,5 @@ againBtn.addEventListener("click", () => {
   noBtn.style.left = "";
   noBtn.style.top = "";
   noBtn.style.display = "";
-  if (tinyNote) tinyNote.style.display = "";
+  if (tinyNote) tinyNote.classList.remove("hidden-after-yes");
 });

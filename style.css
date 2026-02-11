@@ -103,7 +103,8 @@
     transition: left 0.15s ease-out, top 0.15s ease-out, box-shadow 0.15s ease;
   }
 
-  .no.hidden-after-yes {
+  .no.hidden-after-yes,
+  .tiny.hidden-after-yes {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
