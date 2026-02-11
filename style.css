@@ -106,10 +106,10 @@
   /* photo frame + animations */
   .photo-frame {
     position: relative;
-    display: inline-block;
+    display: block;
+    width: calc(3in + 24px);
     margin: 14px auto 16px;
     padding: 12px;
-    min-height: 200px;
     background: linear-gradient(145deg, #fff 0%, #fff8fa 50%, #ffe8f0 100%);
     border-radius: 12px;
     box-shadow:
@@ -123,10 +123,9 @@
 
   .photo-frame img {
     display: block;
-    max-width: 260px;
-    width: 100%;
-    height: auto;
-    min-height: 180px;
+    width: 3in;
+    height: 4in;
+    margin: 0 auto;
     border-radius: 8px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     object-fit: cover;
